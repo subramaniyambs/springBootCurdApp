@@ -1,0 +1,12 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.tek.book.MicroServiceRecognizer",
+      "name": "datasource.db-ebook",
+      "sourceMethod": "public javax.sql.DataSource eRFIDataSource() ",
+      "type": "javax.sql.DataSource"
+    }
+  ],
+  "properties": []
+}

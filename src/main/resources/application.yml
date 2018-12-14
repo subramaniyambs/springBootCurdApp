@@ -1,0 +1,45 @@
+# Discovery Server Access
+eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:1111/eureka/
+
+# HTTP Server (Tomcat) Port
+server: 
+  port: 2222
+
+### Spring properties 
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation : true
+spring:
+  profiles.active: development
+  application:
+    name: ebook-microservice
+---
+spring:
+  profiles: development
+  jpa:
+    database: H2 
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      jdbc.lob.non_contextual_creation : true 
+datasource:
+  db-ebook:
+      jdbcUrl: jdbc:h2:mem:example-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      platform: h2
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+      
+          
+---
+
+  
+      
+### SQL Queries
+sql:
+  type:
+    findAllActive  : SELECT TO_CHAR(CREATED_ON,'DD-MM-YYYY HH24:MI:SS') AS CREATEDON,BOOK_NAME AS BOOKNAME, BOOK_AUTHOR AS AUTHOR, ID, STATUS FROM BOOK_DETAILS WHERE STATUS='0'
+    findByTypeName : SELECT * FROM BOOK_DETAILS WHERE STATUS ='0' AND LOWER(BOOK_NAME)LIKE LOWER(?)
+    findById : SELECT TO_CHAR(CREATED_ON,'DD-MM-YYYY HH24:MI:SS') AS CREATEDON,BOOK_NAME AS BOOKNAME, BOOK_AUTHOR AS AUTHOR, ID, STATUS FROM BOOK_DETAILS WHERE STATUS='0' AND ID=?
+  
